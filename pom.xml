@@ -19,6 +19,7 @@
         <module>auth</module>
         <module>customers</module>
         <module>orders</module>
+        <module>requests</module>
     </modules>
 
     <properties>
