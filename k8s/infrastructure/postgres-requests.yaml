@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-requests
+  labels:
+    app: postgres-requests
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-requests
+
+    strategy:
+      type: Recreate
+
+    template:
+      metadata:
+        labels:
+          app: postgres-requests
+
+      spec:
+        containers:
+          - name: postgres-requests
+            image: postgres
+            env:
+              - name: POSTGRES_USER
+                value: postgres
+              - name: POSTGRES_PASSWORD
+                value: password
+              - name: POSTGRES_DB
+                value: dienwagen_requests
+            ports:
+              - containerPort: 5432
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-requests
+  labels:
+    app: postgres-requests
+spec:
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+
+  type: ClusterIP
