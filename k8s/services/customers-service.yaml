@@ -47,3 +47,4 @@ spec:
       port: 8050
       targetPort: 8050
       nodePort: 30778
+  type: NodePort
