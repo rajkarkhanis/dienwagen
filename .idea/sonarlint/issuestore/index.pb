@@ -29,8 +29,6 @@ S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 ?
 auth/.gitignore,3\f\3f40ee23c275f0b958d22bbc20f2f7fed0726375
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 }
 Mcustomers/src/main/java/com/dienwagen/customers/config/WebSecurityConfig.java,6\0\603f6379be2e4e9a58c77b6a4dfa97ed090fb7f6
 ‚
@@ -43,8 +41,6 @@ t
 Dcustomers/src/main/java/com/dienwagen/customers/entity/Customer.java,5\0\50bff972509671ff44088f012ecee1620857b055
 ‚
 Rcustomers/src/main/java/com/dienwagen/customers/repository/CustomerRepository.java,6\c\6c3647824fd31c6ebdd50e25627b44460ff6bcda
-<
-auth/pom.xml,c\f\cf3c56ff971c67216817e39a7bd2756a0dd65833
 |
 Lcustomers/src/main/java/com/dienwagen/customers/service/CustomerService.java,7\4\74be416eed328aa21d6fccf90badc100000a898f
 t

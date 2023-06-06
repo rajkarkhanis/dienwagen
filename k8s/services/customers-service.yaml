@@ -28,7 +28,7 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               value: password
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://customers-db:5431/dienwagen_customers
+              value: jdbc:postgresql://customers-db:5432/dienwagen_customers
             - name: SPRING_DATASOURCE_USERNAME
               value: postgres
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
