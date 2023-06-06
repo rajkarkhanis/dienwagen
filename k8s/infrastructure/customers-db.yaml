@@ -45,11 +45,11 @@ metadata:
     app: customers-db
     tier: database
 
-  spec:
-    ports:
-      - port: 5431
-        targetPort: 5431
+spec:
+  ports:
+    - port: 5431
+      targetPort: 5431
 
-    selector:
-      app: customers-db
-      tier: database
+  selector:
+    app: customers-db
+    tier: database
