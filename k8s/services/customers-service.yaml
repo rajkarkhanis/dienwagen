@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: customers-service
+  labels:
+    app: customers-service
+
+spec:
+  selector:
+    matchLabels:
+      app: customers-service
+  
+  template:
+    metadata:
+      labels:
+        app: customers-service
+    
+    spec:
+      containers:
+        - name: customers-service
+          image: rajkarkhanis/dienwagen-customers
+          ports:
+            - containerPort: 8050
+          env:
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: password
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://customers-db:5431/dienwagen_customers
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: create
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: customers-service
+
+spec:
+  selector:
+    app: customers-service
+
+  ports:
+    - protocol: "TCP"
+      port: 8050
+      targetPort: 8050
+      nodePort: 30778

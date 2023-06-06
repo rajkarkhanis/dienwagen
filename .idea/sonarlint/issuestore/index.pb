@@ -57,9 +57,3 @@ Krequests/src/main/java/com/dienwagen/requests/config/WebSecurityConfig.java,9\
 Xrequests/src/main/java/com/dienwagen/requests/controller/VehicleEquipmentController.java,c\b\cb7adbbe28ce2733f5317502ea2670e752f98431
 v
 Frequests/src/main/java/com/dienwagen/requests/RequestsApplication.java,4\6\46a0f687d4ea8d6956b896e7b67ce95099d4e5b8
-A
-customers/pom.xml,6\b\6bb791b35605edc52e89cd2ef01d60ab6c798b2f
->
-orders/pom.xml,0\1\01b3e3de42987d9fc22b6ff5b601fbd176be2eae
-@
-requests/pom.xml,5\5\556535c71dcb764787fdabeb469df2fea18b0899
