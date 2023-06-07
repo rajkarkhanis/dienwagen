@@ -28,13 +28,31 @@ spec:
           imagePullPolicy: "IfNotPresent"
           env:
             - name: POSTGRES_USER
-              value: postgres
+              valueFrom:
+                configMapKeyRef:
+                  name: auth-db-config
+                  key: postgres_user
             - name: POSTGRES_PASSWORD
-              value: password
+              valueFrom:
+                secretKeyRef:
+                  name: auth-db-config
+                  key: postgres_password
             - name: POSTGRES_DB
-              value: dienwagen_auth
+              valueFrom:
+                configMapKeyRef:
+                  name: auth-db-config
+                  key: postgres_db
           ports:
             - containerPort: 5432
+          volumeMounts:
+            - mountPath: /data/auth
+              name: auth-db-volume
+
+      restartPolicy: Always
+      volumes:
+        - name: auth-db-volume
+          persistentVolumeClaim:
+            claimName: auth-db-volume
 ---
 apiVersion: v1
 kind: Service

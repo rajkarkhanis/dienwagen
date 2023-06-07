@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: auth-service
+  labels:
+    app: auth-service
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-service
+  
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: auth-service
+    
+    spec:
+      containers:
+        - name: auth-service
+          image: rajkarkhanis/dienwagen-auth
+          ports:
+            - containerPort: 8040
+          env:
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: auth-service-secret
+                  key: spring_datasource_password
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: auth-service-config
+                  key: spring_datasource_url
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: auth-service-config
+                  key: spring_datasource_username
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              valueFrom:
+                configMapKeyRef:
+                  name: auth-service-config
+                  key: spring_jpa_hibernate_ddl_auto
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: auth-service
+
+spec:
+  selector:
+    app: auth-service
+
+  ports:
+    - protocol: "TCP"
+      port: 8040
+      targetPort: 8040
+      nodePort: 30779
+  type: NodePort
