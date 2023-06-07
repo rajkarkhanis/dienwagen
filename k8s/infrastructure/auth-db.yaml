@@ -1,15 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
-  name: requests-db
+  name: auth-db
   labels:
-    app: requests-db
+    app: auth-db
     tier: database
+
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: requests-db
+      app: auth-db
 
   strategy:
     type: Recreate
@@ -17,45 +18,38 @@ spec:
   template:
     metadata:
       labels:
-        app: requests-db
+        app: auth-db
         tier: database
 
     spec:
       containers:
-        - name: requests-db
+        - name: auth-db
           image: postgres
           imagePullPolicy: "IfNotPresent"
           env:
             - name: POSTGRES_USER
-              valueFrom:
-                configMapKeyRef:
-                  name: requests-db-config
-                  key: postgres_user
+              value: postgres
             - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: requests-db-secret
-                  key: postgres_password
+              value: password
             - name: POSTGRES_DB
-              valueFrom:
-                configMapKeyRef:
-                  name: requests-db-config
-                  key: postgres_db
+              value: dienwagen_auth
           ports:
             - containerPort: 5432
 ---
 apiVersion: v1
 kind: Service
+
 metadata:
-  name: requests-db
+  name: auth-db
   labels:
-    app: requests-db
+    app: auth-db
     tier: database
+
 spec:
   ports:
     - port: 5432
       targetPort: 5432
-  
+
   selector:
-    app: requests-db
+    app: auth-db
     tier: database
