@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: auth-service-config
+
+data:
+  spring_datasource_url: "jdbc:postgresql://auth-db:5432/dienwagen_auth"
+  spring_datasource_username: "postgres"
+  spring_jpa_hibernate_ddl_auto: "create"

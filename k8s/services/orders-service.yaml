@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: orders-service
+  labels:
+    app: orders-service
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orders-service
+  
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: orders-service
+    
+    spec:
+      containers:
+        - name: orders-service
+          image: rajkarkhanis/dienwagen-orders
+          ports:
+            - containerPort: 8050
+          env:
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: password
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://orders-db:5432/dienwagen_orders
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: create
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: orders-service
+
+spec:
+  selector:
+    app: orders-service
+
+  ports:
+    - protocol: "TCP"
+      port: 8060
+      targetPort: 8060
+      nodePort: 30780
+  type: NodePort
