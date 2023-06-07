@@ -45,7 +45,7 @@ spec:
           ports:
             - containerPort: 5432
           volumeMounts:
-            - mountPath: /data/auth
+            - mountPath: /var/lib/postgresql/data
               name: auth-db-volume
 
       restartPolicy: Always
