@@ -7,3 +7,4 @@ metadata:
 data:
   postgres_user: "postgres"
   postgres_db: "dienwagen_auth"
+  pg_data: "/var/lib/postgresql/data/auth"

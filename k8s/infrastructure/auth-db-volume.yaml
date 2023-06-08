@@ -10,10 +10,10 @@ spec:
   storageClassName: manual
   capacity:
     storage: 100Mi
-    accessModes:
-      - ReadWriteOnce
-    hostPath:
-      path: /data/auth
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data
 
 ---
 apiVersion: v1
@@ -23,6 +23,7 @@ metadata:
   name: auth-db-volume-claim
 
 spec:
+  storageClassName: manual
   accessModes:
     - ReadWriteOnce
 

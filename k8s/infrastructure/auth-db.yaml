@@ -42,6 +42,11 @@ spec:
                 configMapKeyRef:
                   name: auth-db-config
                   key: postgres_db
+            - name: PGDATA
+              valueFrom:
+                configMapKeyRef:
+                  name: auth-db-config
+                  key: pg_data
           ports:
             - containerPort: 5432
           volumeMounts:
@@ -52,7 +57,7 @@ spec:
       volumes:
         - name: auth-db-volume
           persistentVolumeClaim:
-            claimName: auth-db-volume
+            claimName: auth-db-volume-claim
 ---
 apiVersion: v1
 kind: Service
